@@ -13,15 +13,14 @@ class UsersController < ApplicationController
     @user = matching_users.at(0)
 
     render({ :template => "user_templates/show.html.erb"})
-    
   end
   
   def create
-    user = User.new
-    user.username = params.fetch("query_username")
-    user.save
+    @user = User.new
+    @user.username = params.fetch("query_username")
+    @user.save
     
-    redirect_to("/users/#{user.username}")
+    redirect_to("/users/#{@user.username}")
   end
   
   def update
